@@ -44,7 +44,7 @@ async def store_file(request: Request, file: UploadFile=File(...)):
                           region_name=key['region_name'],
                           endpoint_url=key['endpoint_url'])
     try:
-        s3client.upload_fileobj(file.file, 'gcimed-inbound', f"gcuniv/{file.filename}")
+        s3client.upload_fileobj(file.file, 'bucket_name', f"foldername/{file.filename}")
         return templates.TemplateResponse("display.html", {"request": request,  "filename": {file.filename}})
     except Exception as e:
         print(e)
